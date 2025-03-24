@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import QueueService, {QueueJobData } from './jobs/queue';
-import { JobStatus, JobType } from './jobs/types';
+import { JobType } from './jobs/types';
 
 const workerId = uuidv4();
 
@@ -108,7 +108,6 @@ Object.values(JobType).forEach((type) => {
     if (job.attemptsMade >= job.opts.attempts) {
       await job.update({
         ...job.data,
-        status: JobStatus.FAILED,
         error: `Max retries exceeded: ${error.message}`,
         failedAt: new Date()
       });

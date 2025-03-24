@@ -1,11 +1,3 @@
-export enum JobStatus {
-  PENDING = 'pending',
-  PROCESSING = 'processing',
-  COMPLETED = 'completed',
-  FAILED = 'failed',
-  CANCELLED = 'cancelled'
-}
-
 export enum JobType {
   PROCESS_DATA = 'process_data',
   FILE_PROCESSING = 'file_processing',
