@@ -27,7 +27,6 @@ Object.values(JobType).forEach((type) => {
 });
 
 export interface QueueJobData {
-  jobId: string;
   type: JobType;
   data: JobData;
 }
@@ -40,7 +39,6 @@ export class QueueService {
     }
 
     return queue.add({
-      jobId: data.jobId,
       type,
       data
     });

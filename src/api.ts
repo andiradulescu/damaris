@@ -1,5 +1,4 @@
 import express, { Request, Response , Application } from 'express';
-import { v4 as uuidv4 } from 'uuid';
 import QueueService from './jobs/queue';
 import { JobType } from './jobs/types';
 import config from './config';
@@ -24,16 +23,13 @@ app.post('/jobs', async (req, res) => {
       return;
     }
 
-    const job = await QueueService.addJob(type as JobType, {
-      jobId: uuidv4(),
-      ...data
-    });
+    const job = await QueueService.addJob(type as JobType, data);
 
     res.status(201).json({
       success: true,
       message: 'Job created successfully',
       data: {
-        jobId: job.data.jobId,
+        jobId: job.id,
         type: job.data.type,
         status: job.data.data.status,
         createdAt: job.data.data.createdAt
@@ -70,11 +66,8 @@ app.get('/jobs/:jobId', async (req, res) => {
       const job = await queue.getJob(jobId);
 
       if (job) {
-        // Check if this is the job we're looking for by matching jobId in the data
-        if (job.data.jobId === jobId) {
-          foundJob = job;
-          break;
-        }
+        foundJob = job;
+        break;
       }
     }
 
@@ -83,7 +76,7 @@ app.get('/jobs/:jobId', async (req, res) => {
         success: false,
         message: 'Job not found'
       });
-      return
+      return;
     }
 
     // Get job state
@@ -93,7 +86,7 @@ app.get('/jobs/:jobId', async (req, res) => {
     res.json({
       success: true,
       data: {
-        jobId: foundJob.data.jobId,
+        jobId: foundJob.id,
         type: foundJob.data.type,
         status: state,
         data: foundJob.data.data,
