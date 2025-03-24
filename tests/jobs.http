@@ -1,5 +1,5 @@
 @host=http://localhost:3000
-@jobId=eacf5f82-f2bc-4223-8530-602df49fa74c
+@jobId=87a8930a-1c37-48e6-ba61-7542c478fa0d
 
 ### Submit a Job (PROCESS_DATA)
 POST {{host}}/jobs
@@ -33,3 +33,6 @@ GET {{host}}/jobs?status=completed
 
 ### Delete a Job
 DELETE {{host}}/jobs/{{jobId}}
+
+### Get Stats
+GET {{host}}/jobs/stats

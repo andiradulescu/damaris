@@ -12,6 +12,11 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to Express & TypeScript Server');
 });
 
+app.get('/jobs/stats', async (req, res) => {
+  const jobCounts = await QueueService.getJobCounts();
+  res.status(200).json(jobCounts);
+});
+
 app.post('/jobs', async (req, res) => {
   try {
     const { type, data } = req.body;
@@ -32,8 +37,8 @@ app.post('/jobs', async (req, res) => {
       data: {
         jobId: job.id,
         type: job.data.type,
-        status: job.data.data.status,
-        createdAt: job.data.data.createdAt
+        status: 'active',
+        createdAt: job.data.createdAt
       }
     });
   } catch (error) {
@@ -90,13 +95,8 @@ app.get('/jobs/:jobId', async (req, res) => {
       success: true,
       data: {
         jobId: foundJob.id,
-        type: foundJob.data.type,
         status: state,
-        data: foundJob.data.data,
-        result: foundJob.data.result,
-        createdAt: foundJob.data.createdAt,
-        completedAt: foundJob.data.completedAt,
-        processingTime: foundJob.data.processingTime
+        ...foundJob.data,
       }
     });
   } catch (error) {
@@ -137,12 +137,8 @@ app.get('/jobs', async (req, res) => {
 
     const formattedJobs = jobs.map(job => ({
       jobId: job.id,
-      type: job.data.type,
       status: status,
-      data: job.data.data,
-      result: job.data.result,
-      createdAt: job.data.data.createdAt,
-      completedAt: job.data.data.completedAt
+      ...job.data,
     }));
 
     res.json({

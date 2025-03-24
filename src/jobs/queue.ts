@@ -30,6 +30,7 @@ Object.values(JobType).forEach((type) => {
 export interface QueueJobData {
   type: JobType;
   data: JobData;
+  createdAt: string;
 }
 
 export class QueueService {
@@ -41,7 +42,8 @@ export class QueueService {
 
     return queue.add({
       type,
-      data
+      data,
+      createdAt: new Date(),
     }, {
       jobId: uuidv4(),
     });
@@ -49,6 +51,19 @@ export class QueueService {
 
   static getQueue(type: JobType): Queue.Queue | undefined {
     return queues[type];
+  }
+
+  static async getJobCounts(): Promise<{ [key in JobType]?: Queue.JobCounts }> {
+    const counts: { [key in JobType]?: Queue.JobCounts } = {};
+
+    for (const type of Object.values(JobType)) {
+      const queue = queues[type];
+      if (queue) {
+        counts[type] = await queue.getJobCounts();
+      }
+    }
+
+    return counts;
   }
 }
 
