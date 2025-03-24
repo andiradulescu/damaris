@@ -81,11 +81,11 @@ const sampleJobs: JobSubmission[] = [
   }
 ];
 
-const port = process.env.PORT || 3000;
+const API_URL = process.env.API_URL || 'http://localhost:3000';
 
 async function submitJob(job: JobSubmission): Promise<Job | null> {
   try {
-    const response = await axios.post<ApiResponse<Job>>(`http://localhost:${port}/jobs`, job);
+    const response = await axios.post<ApiResponse<Job>>(`${API_URL}/jobs`, job);
     return response.data.data;
   } catch (error) {
     console.error('Error submitting job:', error instanceof Error ? error.message : 'Unknown error');
@@ -95,7 +95,7 @@ async function submitJob(job: JobSubmission): Promise<Job | null> {
 
 async function getJobStatus(jobId: string): Promise<Job | null> {
   try {
-    const response = await axios.get<ApiResponse<Job>>(`http://localhost:${port}/jobs/${jobId}`);
+    const response = await axios.get<ApiResponse<Job>>(`${API_URL}/jobs/${jobId}`);
     return response.data.data;
   } catch (error) {
     console.error('Error getting job status:', error instanceof Error ? error.message : 'Unknown error');
@@ -105,7 +105,7 @@ async function getJobStatus(jobId: string): Promise<Job | null> {
 
 async function getJobsStats(): Promise<any> {
   try {
-    const response = await axios.get<ApiResponse<any>>(`http://localhost:${port}/jobs/stats`);
+    const response = await axios.get<ApiResponse<any>>(`${API_URL}/jobs/stats`);
     return response.data.data;
   } catch (error) {
     console.error('Error getting jobs stats:', error instanceof Error ? error.message : 'Unknown error');

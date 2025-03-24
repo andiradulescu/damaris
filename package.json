@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "api": "ts-node-dev --respawn src/api.ts",
-    "worker": "ts-node-dev --respawn src/worker.ts"
+    "worker": "ts-node-dev --respawn src/worker.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "bull": "^4.16.5",

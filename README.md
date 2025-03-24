@@ -17,6 +17,51 @@ The system consists of three main components:
 2. **Job Queue (Redis)**: Distributes jobs to available workers using Bull
 3. **Workers**: Process jobs in parallel with automatic recovery
 
+## Quick Start
+
+1. Clone the repository
+
+2. Start the services using Docker Compose:
+```bash
+docker-compose up -d
+```
+
+The API will be available at http://localhost:3000
+
+## Quick Demo Script
+```bash
+./run-demo.sh
+```
+
+Both "Quick Start" and "Quick Demo Script" require Docker.
+
+## Prerequisites
+
+- Node.js
+- Redis
+
+## Development Setup
+
+1. Install dependencies:
+```bash
+yarn
+```
+
+2. Copy environment configuration:
+```bash
+cp .env.example .env
+```
+
+3. Start the api:
+```bash
+yarn api
+```
+
+4. Start a worker:
+```bash
+yarn worker
+```
+
 ## API Documentation
 
 ### Submit a Job
