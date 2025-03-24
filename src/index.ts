@@ -6,6 +6,8 @@ import config from './config';
 
 const app: Application = express();
 
+app.use(express.json());
+
 app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to Express & TypeScript Server');
 });

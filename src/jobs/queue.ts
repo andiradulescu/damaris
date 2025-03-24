@@ -5,7 +5,8 @@ import { JobType, JobData } from './types';
 const queueConfig = {
   redis: {
     host: config.redis.host,
-    port: config.redis.port
+    port: config.redis.port,
+    db: config.redis.db
   },
   defaultJobOptions: {
     attempts: config.maxJobRetries,
