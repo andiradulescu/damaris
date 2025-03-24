@@ -138,8 +138,9 @@ app.get('/jobs', async (req, res) => {
     const formattedJobs = jobs.map(job => ({
       jobId: job.id,
       type: job.data.type,
-      status: job.data.data.status,
+      status: status,
       data: job.data.data,
+      result: job.data.result,
       createdAt: job.data.data.createdAt,
       completedAt: job.data.data.completedAt
     }));

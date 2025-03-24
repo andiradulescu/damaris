@@ -1,4 +1,5 @@
 import Queue from 'bull';
+import { v4 as uuidv4 } from 'uuid';
 import config from '../config';
 import { JobType, JobData } from './types';
 
@@ -41,6 +42,8 @@ export class QueueService {
     return queue.add({
       type,
       data
+    }, {
+      jobId: uuidv4(),
     });
   }
 
