@@ -1,7 +1,7 @@
 @host=http://localhost:3000
 @jobId=1
 
-### Submit a Job
+### Submit a Job (PROCESS_DATA)
 POST {{host}}/jobs
 Content-Type: application/json
 
@@ -13,11 +13,23 @@ Content-Type: application/json
   }
 }
 
+### Submit a job (FILE_PROCESSING)
+POST {{host}}/jobs
+Content-Type: application/json
+
+{
+  "type": "file_processing",
+  "data": {
+    "filename": "example.jpg",
+    "size": 1024000
+  }
+}
+
 ### Get Job Status
 GET {{host}}/jobs/{{jobId}}
 
 ### List Jobs
-GET {{host}}/jobs?status=completed&type=process_data&page=1&limit=10
+GET {{host}}/jobs?status=completed
 
 ### Delete a Job
 DELETE {{host}}/jobs/{{jobId}}
