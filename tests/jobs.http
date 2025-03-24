@@ -1,0 +1,23 @@
+@host=http://localhost:3000
+@jobId=1
+
+### Submit a Job
+POST {{host}}/jobs
+Content-Type: application/json
+
+{
+  "type": "process_data",
+  "data": {
+    "input": "example input",
+    "options": {}
+  }
+}
+
+### Get Job Status
+GET {{host}}/jobs/{{jobId}}
+
+### List Jobs
+GET {{host}}/jobs?status=completed&type=process_data&page=1&limit=10
+
+### Delete a Job
+DELETE {{host}}/jobs/{{jobId}}
