@@ -14,6 +14,7 @@ const queueConfig = {
       type: 'exponential',
       delay: 1000
     },
+    // Persist all jobs
     removeOnComplete: false,
     removeOnFail: false
   }
@@ -43,6 +44,10 @@ export class QueueService {
       type,
       data
     });
+  }
+
+  static getQueue(type: JobType): Queue.Queue | undefined {
+    return queues[type];
   }
 }
 

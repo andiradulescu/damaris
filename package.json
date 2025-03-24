@@ -5,7 +5,8 @@
   "author": "Andrei Radulescu <andi.radulescu@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn src/index.ts"
+    "api": "ts-node-dev --respawn src/api.ts",
+    "worker": "ts-node-dev --respawn src/worker.ts"
   },
   "dependencies": {
     "bull": "^4.16.5",
