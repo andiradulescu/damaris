@@ -1,0 +1,14 @@
+{
+  "name": "damaris-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "demo": "ts-node demo.ts"
+  },
+  "dependencies": {
+    "axios": "^1.8.4"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
