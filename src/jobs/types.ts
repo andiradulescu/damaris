@@ -13,3 +13,7 @@ export enum JobType {
   TRANSACTION_VERIFICATION = 'transaction_verification',
   COMPLEX_CALCULATION = 'complex_calculation'
 }
+
+export interface JobData {
+  [key: string]: any;
+}

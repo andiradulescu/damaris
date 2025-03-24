@@ -13,6 +13,7 @@ interface Config {
     password?: string;
     tls?: any;
   };
+  maxJobRetries: number;
 }
 
 const config: Config = {
@@ -22,7 +23,9 @@ const config: Config = {
   redis: {
     host: process.env.REDIS_HOST || 'localhost',
     port: parseInt(process.env.REDIS_PORT || '6379'),
-  }
+    db: parseInt(process.env.REDIS_DB || '0')
+  },
+  maxJobRetries: parseInt(process.env.MAX_JOB_RETRIES || '3'),
 };
 
 export default config;
