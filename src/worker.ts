@@ -68,8 +68,8 @@ Object.values(JobType).forEach((type) => {
   if (!queue) return;
 
   queue.process(async (job) => {
-    const { jobId, data } = job.data as QueueJobData;
-    console.log(`Processing job ${jobId} of type ${type}`);
+    const { data } = job.data as QueueJobData;
+    console.log(`Processing job ${job.id} of type ${type}`);
 
     // Process the job
     const processor = jobProcessors[type];
@@ -78,7 +78,7 @@ Object.values(JobType).forEach((type) => {
     const processingTime = Date.now() - startTime;
 
     // Save the result in the bull queue
-    console.log(`Job ${jobId} completed in ${processingTime}ms`);
+    console.log(`Job ${job.id} completed in ${processingTime}ms`);
 
     // Store the result in the job's return value
     // This will be available in the completed event and when fetching the job
