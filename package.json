@@ -1,14 +1,12 @@
 {
-  "name": "distributed-messaging-system",
+  "name": "damaris",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
+  "description": "DaMariS - A Distributed Messaging System",
+  "author": "Andrei Radulescu <andi.radulescu@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev src/index.ts"
   },
-  "keywords": [],
-  "author": "Andrei Radulescu <andi.radulescu@gmail.com>",
-  "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2"
