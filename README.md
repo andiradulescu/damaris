@@ -9,6 +9,8 @@ A scalable, fault-tolerant distributed messaging system.
 - **Fault Tolerant**: Automatic job recovery and retries on worker failures
 - **Job Status Tracking**: Tracking of all jobs status
 
+For detailed information about the system architecture, design decisions, and scalability considerations, please see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## Architecture
 
 The system consists of three main components:
